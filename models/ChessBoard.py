@@ -1,4 +1,28 @@
+from models.Figures.Bishop import Bishop
+from models.Figures.King import King
+from models.Figures.Knight import Knight
+from models.Figures.Queen import Queen
 from models.Postion import Position
+from models.Figures.Rook import Rook
+
+initial_figures_mapping = {
+    '1A': Rook,
+    '8A': Rook,
+    '1H': Rook,
+    '8H': Rook,
+    '1B': Knight,
+    '8B': Knight,
+    '1G': Knight,
+    '8G': Knight,
+    '1C': Bishop,
+    '8C': Bishop,
+    '1F': Bishop,
+    '8F': Bishop,
+    '1D': Queen,
+    '8D': Queen,
+    '1E': King,
+    '8E': King
+}
 
 
 def fill_board():
