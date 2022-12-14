@@ -1,5 +1,4 @@
 from typing import Union
-
 from models.ChessBoard import ChessBoard, initial_figures_mapping
 from models.Figures.Bishop import Bishop
 from models.Figures.King import King
@@ -12,6 +11,14 @@ from models.Postion import Position
 
 class Player:
     number_of_figures = 16
+
+    def __init__(self, number, name, color, game):
+        self.number = number
+        self.name = name
+        self.figures_color = color
+        self.game = game
+        self.player_figures = [] * self.number_of_figures
+        self.init_figures()
 
     def init_figures(self):
         initial_indexes_for_player = []
@@ -33,9 +40,11 @@ class Player:
                 figure.set_title(type(figure).__name__)
                 pos.set_chess_figure(figure)
                 self.player_figures.append(figure)
-    def __init__(self, number, name, color):
-        self.number = number
-        self.name = name
-        self.figures_color = color
-        self.player_figures = [] * self.number_of_figures
-        self.init_figures()
+
+    def move_figure(self, figure_name_to_be_moved):
+        figures_to_be_moved = []
+        for figure in self.player_figures:
+            if type(figure).__name__ == figure_name_to_be_moved and not figure.killed:
+                figures_to_be_moved.append(figure)
+        print(figures_to_be_moved)
+
