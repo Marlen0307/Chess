@@ -35,7 +35,7 @@ class Game:
                 print(json.dumps(figures)[1:-1])  # print figure choices
                 key = input()
                 figure_to_be_moved = figures[int(key)]
-                player.move_figure(figure_to_be_moved)
+                player.choose_moving_figure(figure_to_be_moved)
 
     def end(self):
         self.ended = True

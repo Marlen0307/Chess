@@ -14,3 +14,6 @@ class ChessFigure:
 
     def set_title(self, new_title: str):
         self.title = new_title
+
+    def get_position(self):
+        return self.position.to_string()
