@@ -33,6 +33,20 @@ def fill_board():
         ChessBoard.positions.insert(number - 1, positions)
 
 
+def get_position(x, y) -> Position:
+    y_index = ChessBoard.y_positions.index(y)
+    x_index = ChessBoard.x_positions.index(x)
+    return ChessBoard.positions[y_index][x_index]
+
+
+def get_x_index(x: str):
+    return ChessBoard.x_positions.index(x)
+
+
+def get_x(x_index: int):
+    return ChessBoard.x_positions[x_index]
+
+
 class ChessBoard:
     x_positions = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
     y_positions = [1, 2, 3, 4, 5, 6, 7, 8]

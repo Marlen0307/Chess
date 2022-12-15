@@ -34,17 +34,20 @@ class Player:
                     continue
                 pos: Position = ChessBoard.positions[index_of_number][index_of_letter]
                 figure: Union[Bishop, King, Knight, Pawn, Queen, Rook, None] = None
+                direction = 1
+                if self.number == 1:  # second player figures need to go down the board
+                    direction = -1
                 if index_of_number == 1 or index_of_number == 6:  # these are the rows were the Pawns are initially
-                    figure = Pawn(self.figures_color, '', pos)
+                    figure = Pawn(self.figures_color, '', pos, direction)
                 else:
                     figure = initial_figures_mapping[pos.to_string()](
-                        self.figures_color, '', pos)
+                        self.figures_color, '', pos, direction)
                 figure.set_title(type(figure).__name__)
                 pos.set_chess_figure(figure)
                 self.player_figures.append(figure)
 
     def move_figure(self, figure_to_be_moved):
-        print(figure_to_be_moved)
+        figure_to_be_moved.get_next_move()
 
     def choose_moving_figure(self, figure_name_to_be_moved: str):
         matching_figures = []
@@ -62,4 +65,3 @@ class Player:
             for index in range(len(matching_figures)):
                 print(str(index) + " : " + matching_figures[index].get_position() + "\n")
             self.move_figure(matching_figures[int(input())])
-
