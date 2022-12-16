@@ -15,6 +15,9 @@ class Position:
         self.chess_figure = new_figure
         self.set_occupied(new_figure is not None)
 
+    def get_chess_figure(self):
+        return self.chess_figure
+
     def set_occupied(self, new_state: bool):
         self.occupied = new_state
 

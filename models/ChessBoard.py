@@ -44,7 +44,10 @@ def get_x_index(x: str):
 
 
 def get_x(x_index: int):
-    return ChessBoard.x_positions[x_index]
+    try:
+        return ChessBoard.x_positions[x_index]
+    except IndexError:
+        return None
 
 
 class ChessBoard:
