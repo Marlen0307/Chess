@@ -1,5 +1,4 @@
 from typing import Union
-from models.ChessBoard import ChessBoard, initial_figures_mapping
 from models.Figures.Bishop import Bishop
 from models.Figures.King import King
 from models.Figures.Knight import Knight
@@ -7,6 +6,26 @@ from models.Figures.Pawn import Pawn
 from models.Figures.Queen import Queen
 from models.Figures.Rook import Rook
 from models.Postion import Position
+from models.ChessBoard import ChessBoard
+
+initial_figures_mapping = {
+    '1A': Rook,
+    '8A': Rook,
+    '1H': Rook,
+    '8H': Rook,
+    '1B': Knight,
+    '8B': Knight,
+    '1G': Knight,
+    '8G': Knight,
+    '1C': Bishop,
+    '8C': Bishop,
+    '1F': Bishop,
+    '8F': Bishop,
+    '1D': Queen,
+    '8D': Queen,
+    '1E': King,
+    '8E': King
+}
 
 
 class Player:
@@ -38,16 +57,16 @@ class Player:
                 if self.number == 1:  # second player figures need to go down the board
                     direction = -1
                 if index_of_number == 1 or index_of_number == 6:  # these are the rows were the Pawns are initially
-                    figure = Pawn(self.figures_color, '', pos, direction)
+                    figure = Pawn(self.figures_color, '', pos, direction, self)
                 else:
                     figure = initial_figures_mapping[pos.to_string()](
-                        self.figures_color, '', pos, direction)
+                        self.figures_color, '', pos, direction, self)
                 figure.set_title(type(figure).__name__)
                 pos.set_chess_figure(figure)
                 self.player_figures.append(figure)
 
     def move_figure(self, figure_to_be_moved):
-        figure_to_be_moved.get_next_move()
+        figure_to_be_moved.get_moving_options()
 
     def choose_moving_figure(self, figure_name_to_be_moved: str):
         matching_figures = []

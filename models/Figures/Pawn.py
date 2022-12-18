@@ -4,6 +4,10 @@ from models.ChessFigure import ChessFigure
 
 
 class Pawn(ChessFigure):
+
+    def __init__(self, color: str, title: str, position: Postion, direction, player):
+        super().__init__(color, title, position, direction, player)
+
     # returns array with possible moves, empty array if no possible moves
     def get_forward_move(self):
         steps = [1]
@@ -30,14 +34,6 @@ class Pawn(ChessFigure):
                     moves.append(pos)
         return moves
 
-    def __init__(self, color: str, title: str, position: Postion, direction):
-        super().__init__(color, title, position, direction)
-
-    def get_next_move(self):
+    def get_moving_options(self):
         moving_options = self.get_forward_move() + self.get_diagonal_move()
-        if len(moving_options) > 0:
-            print("Select your next move: \n")
-            for i in range(len(moving_options)):
-                print(str(i) + " : " + moving_options[i].to_string())
-            new_pos = moving_options[int(input())]
-            super().move(new_pos)
+        self.get_next_move(moving_options)
