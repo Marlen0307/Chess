@@ -1,5 +1,5 @@
 from models.ChessBoard import get_position, get_x_index, get_y_index, ChessBoard
-from models.ChessFigure import ChessFigure
+from models.ChessFigure import ChessFigure, is_position_valid
 from models import Postion
 from Constants import Directions, extremes
 
@@ -7,12 +7,6 @@ from Constants import Directions, extremes
 class Rook(ChessFigure):
     def __init__(self, color: str, title: str, position: Postion, direction, player):
         super().__init__(color, title, position, direction, player)
-
-    def is_position_valid(self, pos: Postion):
-
-        if pos.occupied:  # if position is occupied by opponent position is valid
-            return pos.chess_figure.color != self.color
-        return True  # if position is not occupied position is valid
 
     def get_horizontal_moves(self, x, y,
                              direction):
@@ -29,9 +23,10 @@ class Rook(ChessFigure):
         moves_arr = []
         while get_condition():
             pos = get_position(ChessBoard.x_positions[index_of_coordinate_to_be_moved], y)
-            if self.is_position_valid(pos):
+            if is_position_valid(self, pos):
                 moves_arr.append(pos)
                 index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + self.get_direction(direction) * 1
+                continue
 
             index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + self.get_direction(direction) * 1
             break_condition = pos.to_string() != self.position.to_string()

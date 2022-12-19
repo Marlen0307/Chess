@@ -22,7 +22,7 @@ class Game:
         for number in [0, 1]:
             num_of_player = number + 1
             default_player_name = "Player " + str(num_of_player)
-            player_name = input("Write name for " + default_player_name)
+            player_name = input("Write name for " + default_player_name + "\n")
             if player_name == "":
                 player_name = default_player_name
             player_color = self.colors[number]

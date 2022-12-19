@@ -10,6 +10,13 @@ class Directions(Enum):
     BOTTOM = "BOTTOM"
 
 
+class CrossDirections(Enum):
+    LEFT_TOP = 'LEFT_TOP'
+    RIGHT_TOP = 'RIGHT_TOP'
+    LEFT_BOTTOM = 'LEFT_BOTTOM'
+    RIGHT_BOTTOM = "RIGHT_BOTTOM"
+
+
 extremes = {
     Directions.LEFT: 0,
     Directions.RIGHT: 7,
