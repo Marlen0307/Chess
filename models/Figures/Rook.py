@@ -26,6 +26,8 @@ class Rook(ChessFigure):
             if is_position_valid(self, pos):
                 moves_arr.append(pos)
                 index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + self.get_direction(direction) * 1
+                if pos.occupied:  # if we come here a enemy is in this position which means that is the last valid position in that direction so we break the loop
+                    break
                 continue
 
             index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + self.get_direction(direction) * 1
@@ -50,7 +52,7 @@ class Rook(ChessFigure):
         moves_arr = []
         while get_condition():
             pos = get_position(x, ChessBoard.y_positions[index_of_coordinate_to_be_moved])
-            if self.is_position_valid(pos):
+            if is_position_valid(self, pos):
                 moves_arr.append(pos)
                 index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + self.get_direction(direction) * 1
                 continue
