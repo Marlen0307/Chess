@@ -9,9 +9,12 @@ def fill_board():
         ChessBoard.positions.insert(number - 1, positions)
 
 
-def get_position(x, y) -> Position:
-    y_index = ChessBoard.y_positions.index(int(y))
-    x_index = ChessBoard.x_positions.index(x)
+def get_position(x, y):
+    try:
+        y_index = ChessBoard.y_positions.index(int(y))
+        x_index = ChessBoard.x_positions.index(x)
+    except IndexError:
+        return None
     return ChessBoard.positions[y_index][x_index]
 
 
