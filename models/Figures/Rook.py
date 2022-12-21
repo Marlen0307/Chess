@@ -1,5 +1,5 @@
 from models.ChessBoard import get_position, get_x_index, get_y_index, ChessBoard
-from models.ChessFigure import ChessFigure, is_position_valid
+from models.ChessFigure import ChessFigure
 from models import Postion
 from Constants import Directions, extremes
 
@@ -18,7 +18,7 @@ def get_horizontal_moves(figure, x, y,
     moves_arr = []
     while get_condition():
         pos = get_position(ChessBoard.x_positions[index_of_coordinate_to_be_moved], y)
-        if is_position_valid(figure, pos):
+        if figure.is_position_valid(pos):
             moves_arr.append(pos)
             index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + figure.get_direction(direction) * 1
             if pos.occupied:  # if we come here a enemy is in this position which means that is the last valid position in that direction so we break the loop
@@ -47,7 +47,7 @@ def get_vertical_moves(figure, x, y, direction):
     moves_arr = []
     while get_condition():
         pos = get_position(x, ChessBoard.y_positions[index_of_coordinate_to_be_moved])
-        if is_position_valid(figure, pos):
+        if figure.is_position_valid(pos):
             moves_arr.append(pos)
             index_of_coordinate_to_be_moved = index_of_coordinate_to_be_moved + figure.get_direction(direction) * 1
             continue
@@ -62,7 +62,7 @@ class Rook(ChessFigure):
     def __init__(self, color: str, title: str, position: Postion, direction, player):
         super().__init__(color, title, position, direction, player)
 
-    def get_all_moves(self):
+    def get_moves(self):
         x = self.position.x
         y = self.position.y
         left_positions = get_horizontal_moves(self, x, y, Directions.LEFT)
@@ -72,5 +72,5 @@ class Rook(ChessFigure):
         return left_positions + right_positions + top_positions + bottom_positions
 
     def get_moving_options(self):
-        moves = self.get_all_moves()
+        moves = self.get_moves()
         self.get_next_move(moves)

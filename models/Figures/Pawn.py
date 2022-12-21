@@ -34,6 +34,9 @@ class Pawn(ChessFigure):
                     moves.append(pos)
         return moves
 
+    def get_moves(self):
+        return self.get_forward_move() + self.get_diagonal_move()
+
     def get_moving_options(self):
-        moving_options = self.get_forward_move() + self.get_diagonal_move()
+        moving_options = self.get_moves()
         self.get_next_move(moving_options)

@@ -9,7 +9,7 @@ class Queen(ChessFigure):
     def __init__(self, color: str, title: str, position: Postion, direction, player):
         super().__init__(color, title, position, direction, player)
 
-    def get_all_moves(self):
+    def get_moves(self):
         x = self.position.x
         y = self.position.y
         left_positions = get_horizontal_moves(self, x, y, Directions.LEFT)
@@ -24,5 +24,5 @@ class Queen(ChessFigure):
             bottom_left_moves + right_bottom_moves
 
     def get_moving_options(self):
-        moves = self.get_all_moves()
+        moves = self.get_moves()
         self.get_next_move(moves)

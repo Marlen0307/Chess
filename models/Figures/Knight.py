@@ -1,6 +1,6 @@
 from models import Postion
 from models.ChessBoard import get_x_index, get_y_index, ChessBoard, get_position
-from models.ChessFigure import ChessFigure, is_position_valid
+from models.ChessFigure import ChessFigure
 
 
 class Knight(ChessFigure):
@@ -27,15 +27,15 @@ class Knight(ChessFigure):
             except IndexError:
                 continue
             pos = get_position(x, y)
-            if is_position_valid(self, pos):
+            if self.is_position_valid(pos):
                 moves_arr.append(pos)
         return moves_arr
 
-    def get_all_moves(self):
+    def get_moves(self):
         vetical_L_moves = self.get_moves_by_step(1, 2)
         horizontal_L_moves = self.get_moves_by_step(2, 1)
         return vetical_L_moves + horizontal_L_moves
 
     def get_moving_options(self):
-        moves = self.get_all_moves()
+        moves = self.get_moves()
         self.get_next_move(moves)

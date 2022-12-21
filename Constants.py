@@ -17,6 +17,11 @@ class CrossDirections(Enum):
     RIGHT_BOTTOM = "RIGHT_BOTTOM"
 
 
+class BoardSides(Enum):
+    LEFT = 'LEFT'
+    RIGHT = 'RIGHT'
+
+
 extremes = {
     Directions.LEFT: 0,
     Directions.RIGHT: 7,
