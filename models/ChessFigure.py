@@ -4,12 +4,6 @@ from Constants import Directions, figures
 from models import Postion
 
 
-def is_position_valid(figure, pos: Postion):
-    if pos.occupied:  # if position is occupied by opponent position is valid
-        return pos.chess_figure.color != figure.color
-    return True  # if position is not occupied position is valid
-
-
 class ChessFigure:
 
     def __init__(self, color: str, title: str, position: Postion, direction, player):
@@ -53,6 +47,11 @@ class ChessFigure:
 
     def eleminate(self):
         self.killed = True
+
+    def is_position_valid(self, pos: Postion):
+        if pos.occupied:  # if position is occupied by opponent position is valid
+            return pos.chess_figure.color != self.color
+        return True  # if position is not occupied position is valid
 
     def get_next_move(self, moving_options):
         if len(moving_options) > 0:

@@ -18,6 +18,15 @@ def get_position(x, y):
     return ChessBoard.positions[y_index][x_index]
 
 
+def get_figures_by_name(name):
+    matching_figures = []
+    for y in range(len(ChessBoard.y_positions)):
+        for x in range(len(ChessBoard.x_positions)):
+            if type(ChessBoard.positions[y][x].chess_figure).__name__ == name:
+                matching_figures.append(ChessBoard.positions[y][x].chess_figure)
+    return matching_figures
+
+
 def get_x_index(x: str):
     return ChessBoard.x_positions.index(x)
 

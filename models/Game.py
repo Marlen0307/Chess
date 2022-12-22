@@ -31,11 +31,17 @@ class Game:
     def loop(self):
         while not self.ended:
             for player in self.players:
+                game_can_go_on = player.look_for_check_on_your_king()
+                if not game_can_go_on:
+                    break
                 print(player.name + "'s turn. Choose the figure you want to move")
                 print(json.dumps(figures)[1:-1])  # print figure choices
                 key = input()
                 figure_to_be_moved = figures[int(key)]
                 player.choose_moving_figure(figure_to_be_moved)
 
-    def end(self):
+    def end(self, winner):
         self.ended = True
+        if winner is not None:
+            print(winner.name + " is the winner. Well played!")
+
